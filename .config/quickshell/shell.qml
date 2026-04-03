@@ -1,23 +1,34 @@
-//@ pragma UseQApplication
 import Quickshell
-import Quickshell.Wayland
-import Quickshell.Hyprland
-import Quickshell.Services.Pipewire
+import "bar"
+import "border"
 
 ShellRoot {
-    PwObjectTracker {
-        objects: [Pipewire.defaultAudioSink, Pipewire.defaultAudioSource]
-    }
-
+    // One bar per monitor
     Variants {
         model: Quickshell.screens
-        Bar { required property var modelData; screen: modelData }
+        delegate: Bar {
+            required property var modelData
+            screen: modelData
+        }
     }
-//    Variants {
-//        model: Quickshell.screens
-//        ScreenBorder {
-//            screen: modelData
-//        }
-//    }
-}
 
+    // Visual border overlay per monitor
+    Variants {
+        model: Quickshell.screens
+        delegate: Border {
+            required property var modelData
+            screen: modelData
+        }
+    }
+
+    // Exclusion zones per monitor (left, right, bottom only —
+    // the bar's PanelWindow already handles the top edge)
+    Variants {
+        model: Quickshell.screens
+        delegate: Exclusions {
+            required property var modelData
+            screen:          modelData
+            borderThickness: 6
+        }
+    }
+}

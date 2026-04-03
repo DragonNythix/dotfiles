@@ -30,8 +30,9 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 edit = [
-	# unfortuanatly no shell var (yet)
 	{ run = "kitty micro %s", desc = "micro", block = false, orphan = true },
+	# doesn't work and i can't be bothered to fix it.
+	#{ run = "$EDITOR %s", desc = "edit with micro", block = true, orphan = true },
 ]
 play = [
 	# uses the xdg deafults to open stuff
