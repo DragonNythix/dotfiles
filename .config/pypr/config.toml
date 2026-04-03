@@ -1,0 +1,35 @@
+[pyprland]
+plugins = [
+    "scratchpads",
+    "shortcuts_menu",
+    "system_notifier"
+]
+
+
+[scratchpads.term]
+animation = "fromTop"
+command = "kitty --class kitty-dropterm"
+class = "kitty-dropterm"
+size = "75% 60%"
+max_size = "1920px 100%"
+margin = 50
+
+
+
+
+[shortcuts_menu.entries."quickstart"]
+"1. firefox"  = "firefox"
+"2. vesktop"  = "vesktop"
+"3. vscode"   = "code"
+"4. intellij" = "idea"
+
+
+[shortcuts_menu.entries."games"]
+"a. Steam"  = "steam"
+"b. Prism"  = "prismlauncher"
+"========"  = ""
+"1. Titanfall 2" = "steam steam://rungameid/1237970"
+"2. Balatro"     = "steam steam://rungameid/2379780"
+"3. Spirit Lofi" = "steam steam://rungameid/2113850"
+
+
