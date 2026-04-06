@@ -1,71 +1,61 @@
+pragma ComponentBehavior: Bound
 import Quickshell
 import Quickshell.Hyprland
 import QtQuick
 import QtQuick.Layouts
 import "widgets"
+import "util"
 
 PanelWindow {
     id: bar
 
-    // screen is set externally by shell.qml (QuickshellScreen)
-    implicitHeight: 30
-    color:          "#0f0f1a"
+    required property var  hyprMonitor
+    required property real borderThickness
 
-    anchors {
-        top:   true
-        left:  true
-        right: true
-    }
+    anchors { top: true; left: true; right: true }
 
-    // Match the QuickshellScreen back to a HyprlandMonitor by name so
-    // WorkspaceBar can filter workspaces to the correct output.
-    property var hyprMonitor: {
-        for (let m of Hyprland.monitors.values) {
-            if (m.name === bar.screen.name) return m
-        }
-        return null
-    }
+    // The PanelWindow grows to include the border strip so its exclusive zone
+    // automatically reserves the right amount of space at the top of the screen.
+    implicitHeight: 30 + bar.borderThickness
+    color:          '#040316'
 
-    // Three-zone layout: absolute anchoring keeps the clock truly centered
-    // regardless of how wide the left/right sections are.
+    // ── Content layer — shifted down by borderThickness ───────────────
+    // The bar background fills the full PanelWindow height (so the color
+    // bleeds into the border strip area), but all interactive widgets sit
+    // below the border strip at their natural vertical center.
     Item {
-        anchors.fill: parent
+        anchors {
+            fill:       parent
+            topMargin:  bar.borderThickness
+        }
 
-        // ── Left: workspaces ─────────────────────────────────────────
+        // ── Left: clock ──────────────────────────────────────────────
         ClockWidget {
             anchors {
                 left:           parent.left
-                leftMargin:     8
+                leftMargin:     10
                 verticalCenter: parent.verticalCenter
             }
-        
         }
-        // ── Center: clock ────────────────────────────────────────────
+
+        // ── Center: workspaces ───────────────────────────────────────
         WorkspaceBar {
             anchors.centerIn: parent
             hyprMonitor:      bar.hyprMonitor
+            borderThickness:  bar.borderThickness
         }
+
         // ── Right: audio + tray ──────────────────────────────────────
         RowLayout {
             anchors {
                 right:          parent.right
-                rightMargin:    8
+                rightMargin:   10
                 verticalCenter: parent.verticalCenter
             }
             spacing: 8
 
-            SinkWidget       { panelWindow: bar }
-            Rectangle {
-                width: 1
-                height: 16
-                color: "#2a2a3a"
-            }
-            SourceWidget     { panelWindow: bar }
-            Rectangle {
-                width: 1
-                height: 16
-                color: "#2a2a3a"
-            }
+
+            Devider{}
             SystemTrayWidget { panelWindow: bar }
         }
     }

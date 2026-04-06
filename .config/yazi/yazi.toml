@@ -64,7 +64,9 @@ tarball = [
 	#{ run = "tar -zcvf %s1.tar.gz %s1", desc = "pack into a tarball"},
 	{ run = "cd $(dirname $1) && tar -zcvf $1.tar.gz $(basename $1)", desc = "Pack into tarball (relative)" },
 ]
-
+run = [
+	{ run = "chmod +x %s && %s", desc = "run the executable" },
+]
 
 
 [open]
@@ -86,8 +88,10 @@ rules = [
 	{ mime = "inode/empty", use = [ "edit", "reveal", "VSC"] },
 	# Virtual file system
 	{ mime = "vfs/{absent,stale}", use = "download" },
+	# Executable
+	{ mime = "application/executable", use = "run" },
 	# Fallback
-	{ url = "*", use = [ "open", "reveal", "VSC" ] },
+	{ url = "*", use = [ "open", "reveal", "VSC" ] }
 ]
 
 [tasks]

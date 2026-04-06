@@ -3,7 +3,14 @@ import QtQuick
 import QtQuick.Layouts
 
 Item {
-    required property var hyprMonitor
+    required property var  hyprMonitor
+    required property real borderThickness
+
+    // Pill geometry scales +2px on each axis across the full 0→10 border range,
+    // animating in sync with the border so the transition feels continuous.
+    readonly property real pillWidth:  26 
+    readonly property real pillHeight: 23
+    readonly property real pillFont:   11
 
     implicitWidth:  wsContainer.width
     implicitHeight: wsContainer.height
@@ -20,8 +27,8 @@ Item {
         // Sliding highlight that lives behind all pills
         Rectangle {
             id: slideHighlight
-            width:  26
-            height: 22
+            width:  pillWidth
+            height: pillHeight
             radius: 6
             color:  "#5B4CA2"
             x:      wsContainer.activeX
@@ -55,8 +62,8 @@ Item {
                         return isCorrectMonitor && !isSpecial
                     }
 
-                    width:  visible ? 26 : 0
-                    height: visible ? 22 : 0
+                    width:  visible ? pillWidth  : 0
+                    height: visible ? pillHeight : 0
                     Layout.preferredWidth: width
                     clip:   true
                     radius: 6
@@ -96,7 +103,7 @@ Item {
                             return (((n - 1) % 10) + 1).toString()
                         }
                         color:          "#d7d7ff"
-                        font.pixelSize: 11
+                        font.pixelSize: pillFont
                         font.bold:      parent.isActive
                         opacity:        parent.visible ? 1 : 0
                     }

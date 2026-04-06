@@ -4,51 +4,46 @@ import QtQuick.Effects
 import Quickshell
 import Quickshell.Wayland
 
-// Visual-only fullscreen overlay. No input region (mask: Region {}) so all
-// clicks fall through to whatever is beneath it on the compositor stack.
 PanelWindow {
     id: root
 
-    required property ShellScreen screen
+    
+    required property real        borderThickness
+    required property real        barHeight
 
-    property int   borderThickness: 10
-    property int   borderRounding:  20
-    property color borderColor:     '#0f0f1a'
+    property int   borderRounding: 14
+    property color borderColor:    "#040316"
 
-    // Sit above all normal windows
-    WlrLayershell.layer: WlrLayer.Overlay
+    WlrLayershell.layer: WlrLayer.Bottom
+    exclusiveZone:       -1
+    mask:                Region {}
 
-    // -1 = do not reserve any compositor space; purely decorative
-    exclusiveZone: -1
-
-    // Empty input region — the window is fully click-through
-    mask: Region {}
-
-    // Fill the whole screen
     anchors { top: true; bottom: true; left: true; right: true }
-
     color: "transparent"
 
-    // ── Colored rectangle that will be masked ──────────────────────────
     Rectangle {
-        anchors.fill: parent
+        anchors {
+            fill:      parent
+            topMargin: root.barHeight   // don't draw over the bar
+        }
         color: root.borderColor
 
         layer.enabled: true
         layer.effect: MultiEffect {
-            maskSource:       mask
+            maskSource:       cutoutMask
             maskEnabled:      true
-            maskInverted:     true   // keep the OUTSIDE of the cutout, not the inside
+            maskInverted:     true
             maskThresholdMin: 0.5
             maskSpreadAtMin:  1.0
         }
     }
 
-    // ── Mask — the hole to punch through the rectangle ────────────────
-    // Inset by borderThickness on all sides; everything inside is removed.
     Item {
-        id: mask
-        anchors.fill: parent
+        id: cutoutMask
+        anchors {
+            fill:      parent
+            topMargin: root.barHeight   // mask must match the rectangle's geometry
+        }
         layer.enabled: true
         visible: false
 
