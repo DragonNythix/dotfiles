@@ -1,38 +1,29 @@
+
 [Default Applications]
-
 # === Core system ===
-inode/directory=yazi.desktop;
-
 # === Web ===
 x-scheme-handler/http=firefox.desktop;
 x-scheme-handler/https=firefox.desktop;
 x-scheme-handler/about=firefox.desktop;
 x-scheme-handler/unknown=firefox.desktop;
-
 # === Mail / links ===
 x-scheme-handler/mailto=proton-mail.desktop;
 x-scheme-handler/proton-inbox=proton-mail.desktop
-
 # === Messaging ===
 x-scheme-handler/discord=vesktop.desktop
 x-scheme-handler/discord-1384260711202422845=discord-1384260711202422845.desktop;
 x-scheme-handler/sgnl=signal.desktop;
 x-scheme-handler/signalcaptcha=signal.desktop;
-
 # === Maps ===
 x-scheme-handler/geo=openstreetmap-geo-handler.desktop;
-
 # === Archives ===
 application/zip=yazi.desktop;
 application/x-tar=yazi.desktop;
 application/gzip=yazi.desktop;
-
 # === Binary / unknown ===
 application/octet-stream=code.desktop;
-
 # === Documents ===
 application/pdf=firefox.desktop;
-
 # === Images ===
 image/png=imv.desktop;
 image/jpeg=imv.desktop;
@@ -41,21 +32,16 @@ image/webp=imv.desktop;
 image/bmp=imv.desktop;
 image/tiff=imv.desktop;
 image/svg+xml=inkscape.desktop;
-
 # === Audio ===
 audio/*=vlc.desktop;
-
 # === Video ===
 video/*=vlc.desktop;
-
 # === Office ===
 application/msword=libreoffice-writer.desktop;
 application/vnd.ms-excel=libreoffice-calc.desktop;
-
 # === Plain text ===
 text/plain=micro.desktop;
 text/markdown=micro.desktop;
-
 # === Code ===
 text/x-c=code.desktop;
 text/x-c++src=code.desktop;
@@ -70,11 +56,28 @@ text/x-php=code.desktop;
 text/x-tex=code.desktop;
 text/tcl=code.desktop;
 application/x-code-workspace=code.desktop;
-
 # === Config / structured ===
 text/x-config=micro.desktop;
 application/x-yaml=micro.desktop;
 application/x-cmake=code.desktop;
-
 # === Misc ===
 application/x-modrinth-modpack+zip=org.prismlauncher.PrismLauncher.desktop;
+video/vnd.rn-realvideo=vlc.desktop
+video/x-flv=vlc.desktop
+video/x-anim=vlc.desktop
+video/mp2t=vlc.desktop
+video/vnd.avi=vlc.desktop
+video/dv=vlc.desktop
+video/quicktime=vlc.desktop
+video/x-nsv=vlc.desktop
+video/vnd.mpegurl=vlc.desktop
+video/webm=vlc.desktop
+video/mp4=vlc.desktop
+video/mpeg=vlc.desktop
+video/3gpp2=vlc.desktop
+video/x-flic=vlc.desktop
+application/x-bat=wine.desktop
+application/x-ms-shortcut=wine.desktop
+application/x-msi=wine.desktop
+application/x-msdownload=wine.desktop
+inode/directory=yazi.desktop

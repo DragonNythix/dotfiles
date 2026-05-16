@@ -68,7 +68,7 @@ Item {
                     clip:   true
                     radius: 6
 
-                    property bool isActive:    modelData ? modelData.active               : false
+                    property bool isActive:    modelData ? modelData.active : false
                     property int  windowCount: modelData ? modelData.toplevels.values.length : 0
                     property bool hasWindows:  windowCount > 0
 
@@ -111,7 +111,7 @@ Item {
                     MouseArea {
                         anchors.fill: parent
                         cursorShape:  Qt.PointingHandCursor
-                        onClicked:    Hyprland.dispatch("workspace " + modelData.name)
+                        onClicked:	  modelData.activate()
                     }
                 }
             }
