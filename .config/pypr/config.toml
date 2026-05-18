@@ -10,9 +10,10 @@ plugins = [
 animation = "fromTop"
 command = "kitty --class kitty-dropterm"
 class = "kitty-dropterm"
-size = "75% 60%"
-max_size = "1920px 100%"
-margin = 50
+size = "90% 90%"
+max_size = "2560px 100%"
+#margin = 50
+position = "5% 5%"
 
 
 
@@ -27,9 +28,11 @@ margin = 50
 [shortcuts_menu.entries."games"]
 "a. Steam"  = "steam"
 "b. Prism"  = "prismlauncher"
+"c. CKAN"	= "ckan"
 "========"  = ""
 "1. Titanfall 2" = "steam steam://rungameid/1237970"
 "2. Balatro"     = "steam steam://rungameid/2379780"
 "3. Spirit Lofi" = "steam steam://rungameid/2113850"
-
+"4. Beyond all Reason "	= "/home/anu/games/Beyond-All-Reason-1.2988.0.AppImage"
+"5. Final Fantasy 14"	= "steam steam://rungameid/312060"
 

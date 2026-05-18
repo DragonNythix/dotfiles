@@ -1,6 +1,7 @@
 # A TOML linter such as https://taplo.tamasfe.dev/ can use this schema to validate your config.
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/keymap.json"
+
+#:schema https://yazi-rs.github.io/schemas/keymap.json
 
 [mgr]
 
@@ -63,10 +64,11 @@ keymap = [
 	{ on = "<Enter>",   run = "open",                        desc = "Open selected files" },
 	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
 	{ on = "c",         run = "yank",                        desc = "Yank selected files (copy)" },
+	{ on = "<C-c>",		run = 'shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list',	 desc = "Copy file to clipboard" },
+	{ on = "<A-c>", 	run = "shell -- dragon -x -a -i -T %s",	 desc = "get the file as dragable icon" },
 	{ on = "x",         run = "yank --cut",                  desc = "Yank selected files (cut)" },
 	{ on = "v",         run = "paste",                       desc = "Paste yanked files" },
-	{ on = "<C-c>",		run = 'shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list',	 desc = "Copy file to clipboard" },
-	{ on = "<A-c>", 	run = "shell -- dragon -x -i -T %h",	 desc = "get the file as dragable icon" },
+	{ on = "<A-v>",		run = "shell -- dragon -x -t -T | xargs -r wcurl", desc = "Open sink to paste files"},
 	{ on = "P",         run = "paste --force",               desc = "Paste yanked files (overwrite if the destination exists)" },
 	{ on = "-",         run = "link",                        desc = "Symlink the absolute path of yanked files" },
 	{ on = "_",         run = "link --relative",             desc = "Symlink the relative path of yanked files" },

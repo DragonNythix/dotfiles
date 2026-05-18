@@ -143,3 +143,4 @@ key[Control-Right]="${terminfo[kRIT5]}"
 [[ -n "${key[Control-Right]}" ]] && bindkey -- "${key[Control-Right]}" forward-word
 
 eval "$(zoxide init zsh)"
+eval "$(oh-my-posh init zsh --config ~/.config/Posh/config.json)"
