@@ -61,34 +61,34 @@ keymap = [
 	{ on = "<Tab>", run = "spot", desc = "Spot hovered file" },
 
 	# Operation
-	{ on = "<Enter>",   run = "open",                        desc = "Open selected files" },
-	{ on = "<S-Enter>", run = "open --interactive",          desc = "Open selected files interactively" },
-	{ on = "c",         run = "yank",                        desc = "Yank selected files (copy)" },
-	{ on = "<C-c>",		run = 'shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list',	 desc = "Copy file to clipboard" },
-	{ on = "<A-c>", 	run = "shell -- dragon -x -a -i -T %s",	 desc = "get the file as dragable icon" },
-	{ on = "x",         run = "yank --cut",                  desc = "Yank selected files (cut)" },
-	{ on = "v",         run = "paste",                       desc = "Paste yanked files" },
-	{ on = "<A-v>",		run = "shell -- dragon -x -t -T | xargs -r wcurl", desc = "Open sink to paste files"},
-	{ on = "P",         run = "paste --force",               desc = "Paste yanked files (overwrite if the destination exists)" },
-	{ on = "-",         run = "link",                        desc = "Symlink the absolute path of yanked files" },
-	{ on = "_",         run = "link --relative",             desc = "Symlink the relative path of yanked files" },
-	{ on = "<C-->",     run = "hardlink",                    desc = "Hardlink yanked files" },
-	# doesnt work, { on = "C",         run = "unyank",                      desc = "Cancel the yank status" },
-	{ on = "X",         run = "unyank",                      desc = "Cancel the yank status" },
-	{ on = "<Backspace>",         run = "remove",            desc = "Trash selected files" },
-	{ on = "<Delete>",         run = "remove --permanently",        desc = "Permanently delete selected files" },
-	{ on = "n",         run = "create",                      desc = "Create a file (ends with / for directories)" },
-	{ on = "N",         run = "create --dir",                desc = "Create a file (ends with / for directories)" },
+	{ on = "<Enter>",   run = "open",                       desc = "Open selected files" },
+	{ on = "<S-Enter>", run = "open --interactive",         desc = "Open selected files interactively" },
+	{ on = "c",         run = "yank",                       desc = "Yank selected files (copy)" },
+	{ on = "<C-c>",		run = 'shell -- for path in %s; do echo "file://$path"; done | wl-copy -t text/uri-list',	desc = "Copy file to clipboard" },
+	{ on = "<A-c>", 	run = "shell -- dragon -x -a -i -T %s",					desc = "get the file as dragable icon" },
+	{ on = "x",         run = "yank --cut",                 desc = "Yank selected files (cut)" },
+	{ on = "v",         run = "paste",                      desc = "Paste yanked files" },
+	{ on = "<A-v>",		run = "shell -- dragon -x -t -T | xargs -r wcurl",		desc = "Open sink to paste files"},
+	{ on = "<C-v>",		run = "shell -- /home/anu/.local/bin/smart-paste.sh %d/",				desc = "paste files from clipboard"},
+	{ on = "P",         run = "paste --force",				desc = "Paste yanked files (overwrite if the destination exists)" },
+	{ on = "-",         run = "link",                       desc = "Symlink the absolute path of yanked files" },
+	{ on = "_",         run = "link --relative",            desc = "Symlink the relative path of yanked files" },
+	{ on = "<C--",		run = "hardlink",                   desc = "Hardlink yanked files" },
+	{ on = "X",         run = "unyank",                     desc = "Cancel the yank status" },
+	{ on = "<Backspace>",	run = "remove",           		desc = "Trash selected files" },
+	{ on = "<Delete>",  run = "remove --permanently",       desc = "Permanently delete selected files" },
+	{ on = "n",         run = "create",                     desc = "Create a file (ends with / for directories)" },
+	{ on = "N",         run = "create --dir",               desc = "Create a file (ends with / for directories)" },
 	#{ on = "r",         run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
-	{ on = "<F2>",      run = "rename --cursor=before_ext",  desc = "Rename selected file(s)" },
-	{ on = ";",         run = "shell --interactive",         desc = "Run a shell command" },
-	{ on = ":",         run = "shell --block --interactive", desc = "Run a shell command (block until finishes)" },
-	{ on = ".",         run = "hidden toggle",               desc = "Toggle the visibility of hidden files" },
-	{ on = "s",         run = "search --via=fd",             desc = "Search files by name via fd" },
-	{ on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
-	{ on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
-	{ on = "z",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
-	{ on = "Z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
+	{ on = "<F2>",      run = "rename --cursor=before_ext", desc = "Rename selected file(s)" },
+	{ on = ";",         run = "shell --interactive",        desc = "Run a shell command" },
+	{ on = ":",         run = "shell --block --interactive",desc = "Run a shell command (block until finishes)" },
+	{ on = ".",         run = "hidden toggle",              desc = "Toggle the visibility of hidden files" },
+	{ on = "s",         run = "search --via=fd",            desc = "Search files by name via fd" },
+	{ on = "S",         run = "search --via=rg",            desc = "Search files by content via ripgrep" },
+	{ on = "<C-s>",     run = "escape --search",            desc = "Cancel the ongoing search" },
+	{ on = "z",         run = "plugin fzf",                 desc = "Jump to a file/directory via fzf" },
+	{ on = "Z",         run = "plugin zoxide",              desc = "Jump to a directory via zoxide" },
 	
 
 
@@ -165,6 +165,18 @@ keymap = [
 	#{ on = "~",    run = "help", desc = "Open help" },
 	{ on = "<F1>", run = "help", desc = "Open help" },
 ]
+prepend_keymap = [
+  { on = ["R","o"], run = "plugin recycle-bin -- open",        desc = "Open Trash" },
+  { on = ["R","e"], run = "plugin recycle-bin -- empty",       desc = "Empty Trash" },
+  { on = ["R","D"], run = "plugin recycle-bin -- emptyDays",   desc = "Empty by days deleted" },
+  { on = ["R","d"], run = "plugin recycle-bin -- delete",      desc = "Delete from Trash" },
+  { on = ["R","r"], run = "plugin recycle-bin -- restore",     desc = "Restore from Trash" },
+
+  { on = "M", run = "plugin mount", desc = "open the mount menu" },
+  
+  { on   = "r",	run  = "plugin chmod",	desc = "Chmod on selected files"}
+]
+
 
 [tasks]
 
