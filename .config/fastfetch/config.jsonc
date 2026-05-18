@@ -70,6 +70,11 @@
       "keyColor": "#94E2D5"
     },
     {
+      "type": "WM",
+      "key": "",
+      "keyColor": "blue"
+    },
+    {
       "type": "terminal",
       "key": "",
       "keyColor": "blue"
@@ -77,26 +82,6 @@
     {
       "type": "shell",
       "key": "",
-      "keyColor": "blue"
-    },
-    {
-      "type": "wm theme",
-      "key": "󰔎",
-      "keyColor": "blue"
-    },
-    {
-      "type": "theme",
-      "key": "󰔎",
-      "keyColor": "blue"
-    },
-    {
-      "type": "icons",
-      "key": "",
-      "keyColor": "blue"
-    },
-    {
-      "type": "font",
-      "key": "",
       "keyColor": "blue"
     },
     {
